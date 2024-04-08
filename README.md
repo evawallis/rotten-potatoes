@@ -1,1 +1,1 @@
-# rotton-potatoes
+# Rotten Potatoes

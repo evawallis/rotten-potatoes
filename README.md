@@ -43,3 +43,6 @@ Pages:
 &nbsp;&nbsp;&nbsp;&nbsp;FK: albumID -> Albums
   
 &nbsp;&nbsp;&nbsp;&nbsp;FK: artistID -> Artists
+
+##Er Diagram
+![erdiagram][erdiagram.jpeg]

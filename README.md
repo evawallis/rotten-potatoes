@@ -18,7 +18,7 @@ Pages:
 
 **Users:** userID, username, password
 
-**UserFollowingRelationship:** relationshipID, _userA_ID_, _userB_ID_
+**UserFollowingRelationship:** relationshipID, _userAID_, _userBID_
 
 &nbsp;&nbsp;&nbsp;&nbsp;FK: userA_ID -> Users
   

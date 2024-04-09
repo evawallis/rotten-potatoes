@@ -46,4 +46,4 @@ Pages:
 
 ## Er Diagram
 
-![erdiagram][erdiagram.jpeg]
+![erdiagram](erdiagram.jpeg)

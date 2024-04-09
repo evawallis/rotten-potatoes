@@ -44,5 +44,6 @@ Pages:
   
 &nbsp;&nbsp;&nbsp;&nbsp;FK: artistID -> Artists
 
-##Er Diagram
+## Er Diagram
+
 ![erdiagram][erdiagram.jpeg]

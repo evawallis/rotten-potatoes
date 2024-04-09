@@ -20,9 +20,9 @@ Pages:
 
 **UserFollowingRelationship:** relationshipID, _userAID_, _userBID_
 
-&nbsp;&nbsp;&nbsp;&nbsp;FK: userA_ID -> Users
+&nbsp;&nbsp;&nbsp;&nbsp;FK: userAID -> Users
   
-&nbsp;&nbsp;&nbsp;&nbsp;FK: userB_ID -> Users
+&nbsp;&nbsp;&nbsp;&nbsp;FK: userBID -> Users
   
 **Albums:** albumID, albumName
 

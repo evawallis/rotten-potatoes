@@ -20,26 +20,26 @@ Pages:
 
 **UserFollowingRelationship:** relationshipID, _userA_ID_, _userB_ID_
 
-&nbsp;FK: userA_ID -> Users
+&nbsp;&nbsp;&nbsp;&nbsp;FK: userA_ID -> Users
   
-&nbsp;FK: userB_ID -> Users
+&nbsp;&nbsp;&nbsp;&nbsp;FK: userB_ID -> Users
   
 **Albums:** albumID, albumName
 
 **UserRatingRelationship:** relationshipID, _userID_, _albumID_, rating, review
 
-&nbsp;FK: userID -> Users
+&nbsp;&nbsp;&nbsp;&nbsp;FK: userID -> Users
   
-&nbsp;FK: albumID -> Albums
+&nbsp;&nbsp;&nbsp;&nbsp;FK: albumID -> Albums
   
 **Songs:** songID, songName, _albumID_
 
-&nbsp;FK: albumID -> Albums
+&nbsp;&nbsp;&nbsp;&nbsp;FK: albumID -> Albums
   
 **Artists:** artistID, artistName
 
 **AlbumArtistRelationship:** relationshipID, _albumID_, _artistID_
 
-&nbsp;FK: albumID -> Albums
+&nbsp;&nbsp;&nbsp;&nbsp;FK: albumID -> Albums
   
-&nbsp;FK: artistID -> Artists
+&nbsp;&nbsp;&nbsp;&nbsp;FK: artistID -> Artists

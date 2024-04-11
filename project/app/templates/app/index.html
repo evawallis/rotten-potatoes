@@ -12,6 +12,13 @@
 
         <h1>Rotten Potatoes</h1>
 
+        {% if user.is_authenticated %}
+        <p>Hello {{user.username}}!</p>
+        <p><a href="{% url 'users:logout' %}">Log out</a></p>
+        {% else %}
+        <p>To access this page, you should <a href="{% url 'users:login' %}">log in</a></p>
+        {% endif %}
+
     </body>
 
 </html>

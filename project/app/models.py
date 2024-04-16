@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from users.models import Person
 
 # Create your models here.
 
@@ -32,8 +33,8 @@ class Song(models.Model):
 #     def __str__(self):
 #         return self.user.username
 
-# class UserAlbumRating(models.Model):
-#     user = models.ForeignKey(Person, on_delete=models.CASCADE)
-#     album = models.ForeignKey(Album, on_delete=models.CASCADE)
-#     rating = models.FloatField()
-#     review = models.TextField()
+class UserAlbumRating(models.Model):
+    user = models.ForeignKey(Person, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    rating = models.FloatField()
+    review = models.TextField()

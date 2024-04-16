@@ -10,19 +10,17 @@
         <h1>Rotten Potatoes</h1>
 
         <nav>
-            <a class="home activePage" href="index.php">Home</a>
-        
-            <a class="array" href="detail.php">Detail</a>
-        
-            <a class="facts" href="detail-2.php">Detail</a>
-            
-            <a class="form" href="form.php">Form</a>
+            <a href="">Home</a>
+            <a href="profile">Profile</a>
+            <a href="{% url 'users:logout' %}">Log out</a>
         </nav>
 
         {% if user.is_authenticated %}
+
         <p>Hello {{user.username}}!</p>
-        <p>View my <a href="profile">profile</a>.</p>
-        <p><a href="{% url 'users:logout' %}">Log out</a></p>
+
+        <p>Homepage</p>
+        
         {% else %}
         <p>To access this page, you should <a href="{% url 'users:login' %}">log in</a></p>
         {% endif %}

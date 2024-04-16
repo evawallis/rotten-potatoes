@@ -3,14 +3,21 @@
 <html lang="en">
 
     <head>
-
         <title>Rotten Potatoes</title>
-
     </head>
 
     <body>
-
         <h1>Rotten Potatoes</h1>
+
+        <nav>
+            <a class="home activePage" href="index.php">Home</a>
+        
+            <a class="array" href="detail.php">Detail</a>
+        
+            <a class="facts" href="detail-2.php">Detail</a>
+            
+            <a class="form" href="form.php">Form</a>
+        </nav>
 
         {% if user.is_authenticated %}
         <p>Hello {{user.username}}!</p>

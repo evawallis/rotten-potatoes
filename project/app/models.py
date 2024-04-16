@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 # TODO:
-#  add class user
 
 class Artist(models.Model):
     name = models.CharField(max_length=30)

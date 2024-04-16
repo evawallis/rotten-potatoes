@@ -9,22 +9,28 @@
     <body>
         <h1>Rotten Potatoes</h1>
 
-        <nav>
-            <a class="home activePage" href="index.php">Home</a>
-        
-            <a class="array" href="detail.php">Detail</a>
-        
-            <a class="facts" href="detail-2.php">Detail</a>
-            
-            <a class="form" href="form.php">Form</a>
-        </nav>
-
         {% if user.is_authenticated %}
+
         <p>Hello {{user.username}}!</p>
-        <p>View my <a href="profile">profile</a>.</p>
+
+        <p>My albums:</p>
+
+        <ul>
+            {% for album in albums %}
+
+            <li>{{album}}</li>
+
+            {% endfor %}
+        </ul>
+
+        <p>Click <a href="..">here</a> to go home.</p>
+
         <p><a href="{% url 'users:logout' %}">Log out</a></p>
+
         {% else %}
+
         <p>To access this page, you should <a href="{% url 'users:login' %}">log in</a></p>
+
         {% endif %}
 
     </body>

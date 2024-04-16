@@ -9,23 +9,17 @@
     <body>
         <h1>Rotten Potatoes</h1>
 
+        <nav>
+            <a href="..">Home</a>
+            <a href="">Profile</a>
+            <a href="{% url 'users:logout' %}">Log out</a>
+        </nav>
+
         {% if user.is_authenticated %}
 
         <p>Hello {{user.username}}!</p>
 
         <p>My albums:</p>
-
-        <ul>
-            {% for album in albums %}
-
-            <li>{{album}}</li>
-
-            {% endfor %}
-        </ul>
-
-        <p>Click <a href="..">here</a> to go home.</p>
-
-        <p><a href="{% url 'users:logout' %}">Log out</a></p>
 
         {% else %}
 

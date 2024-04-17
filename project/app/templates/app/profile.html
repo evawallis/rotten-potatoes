@@ -3,11 +3,11 @@
 <html lang="en">
 
     <head>
-        <title>Rotten Potatoes</title>
+        <title>Profile</title>
     </head>
 
     <body>
-        <h1>Rotten Potatoes</h1>
+        <h1>Rotten Potatoes - Profile</h1>
 
         <nav>
             <a href="..">Home</a>
@@ -20,6 +20,21 @@
         <p>Hello {{user.username}}!</p>
 
         <p>My albums:</p>
+
+        <ul>
+
+            {% for album in albums %} 
+
+            <li>{{album.album}}</li>
+
+            <ul>
+                <li>{{album.rating}}</li>
+                <li>{{album.review}}</li>
+            </ul>
+
+            {% endfor %} 
+
+        </ul>
 
         {% else %}
 

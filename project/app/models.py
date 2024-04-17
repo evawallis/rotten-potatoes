@@ -34,7 +34,7 @@ class Song(models.Model):
 #         return self.user.username
 
 class UserAlbumRating(models.Model):
-    user = models.ForeignKey(Person, on_delete=models.CASCADE)
+    userOwner = models.ForeignKey(Person, on_delete=models.CASCADE)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     rating = models.FloatField()
     review = models.TextField()

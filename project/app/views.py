@@ -15,3 +15,6 @@ def profile(request):
    albums = UserAlbumRating.objects.filter(userOwner = person).all()
    context = {'albums': albums}
    return render(request, 'app/profile.html', context)
+
+def add(request):
+   return render(request, 'app/add.html')

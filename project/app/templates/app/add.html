@@ -3,16 +3,16 @@
 <html lang="en">
 
     <head>
-        <title>Homepage</title>
+        <title>Create a review</title>
     </head>
 
     <body>
-        <h1>Rotten Potatoes - Home</h1>
+        <h1>Rotten Potatoes - Create a Review</h1>
 
         <nav>
-            <a href="">Home</a>
+            <a href="..">Home</a>
             <a href="profile">Profile</a>
-            <a href="add">Create a review</a>
+            <a href="">Create a review</a>
             <a href="{% url 'users:logout' %}">Log out</a>
         </nav>
 
@@ -20,10 +20,10 @@
 
         <p>Hello {{user.username}}!</p>
 
-        <p>Homepage</p>
-        
         {% else %}
+
         <p>To access this page, you should <a href="{% url 'users:login' %}">log in</a></p>
+
         {% endif %}
 
     </body>

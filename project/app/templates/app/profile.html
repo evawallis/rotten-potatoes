@@ -18,7 +18,15 @@
 
         {% if user.is_authenticated %}
 
+        {% if user.first_name %}
+
+        <p>Hello {{user.first_name}}!</p>
+
+        {% else %}
+
         <p>Hello {{user.username}}!</p>
+
+        {% endif %}
 
         <p>My albums:</p>
 
@@ -26,11 +34,11 @@
 
             {% for album in albums %} 
 
-            <li>{{album.album}}</li>
+            <li>{{album.album}} by {{album.album.artist}}</li>
 
             <ul>
-                <li>{{album.rating}}</li>
-                <li>{{album.review}}</li>
+                <li>{{album.rating}}/5.0</li>
+                <li>"{{album.review}}"</li>
             </ul>
 
             {% endfor %} 

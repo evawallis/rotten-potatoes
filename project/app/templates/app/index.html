@@ -18,7 +18,15 @@
 
         {% if user.is_authenticated %}
 
+        {% if user.first_name %}
+
+        <p>Hello {{user.first_name}}!</p>
+
+        {% else %}
+
         <p>Hello {{user.username}}!</p>
+
+        {% endif %}
 
         <p>Homepage</p>
         

@@ -13,7 +13,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         {{ person_form.as_p }}
-        <button name="submit">Register</button>
+        <button name="submit">Submit</button>
         <input type="hidden" name="next" value="{% url 'users:login' %}" />
     </form>
 

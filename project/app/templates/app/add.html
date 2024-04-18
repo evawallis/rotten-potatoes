@@ -28,6 +28,8 @@
 
         {% endif %}
 
+        {{message}}
+
         <form method="post" action="{% url 'app:add' %}">
             {% csrf_token %}
             {{ form.as_p }}

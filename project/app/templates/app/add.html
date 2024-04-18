@@ -28,6 +28,14 @@
 
         {% endif %}
 
+        <form method="post" action="{% url 'app:add' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button name="submit">Register</button>
+            <input type="hidden" name="next" value="{% url 'app:profile' %}" />
+
+        </form>
+
         {% else %}
 
         <p>To access this page, you should <a href="{% url 'users:login' %}">log in</a></p>

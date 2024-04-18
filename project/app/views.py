@@ -6,11 +6,13 @@ def home(request):
    return render(request, 'app/index.html')
 
 def profile(request):
-   currentUser = request.user
-   if currentUser.person:
-      person = currentUser.person
-   else:
-      person = Person.objects.create(user=currentUser)
+   # currentUser = request.user
+   # if currentUser.person:
+   #    person = currentUser.person
+   # else:
+   #    person = Person.objects.create(user=currentUser)
+
+   person = request.user.person
 
    albums = UserAlbumRating.objects.filter(userOwner = person).all()
    context = {'albums': albums}

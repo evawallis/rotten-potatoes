@@ -1,11 +1,7 @@
 from django.db import models
-# from django.contrib.auth.models import User
 from users.models import Person
 
 # Create your models here.
-
-# TODO:
-
 class Artist(models.Model):
     name = models.CharField(max_length=30)
 
@@ -25,13 +21,6 @@ class Song(models.Model):
 
     def __str__(self):
         return self.name
-
-# class Person(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-#     follows = models.ManyToManyField("self")
-
-#     def __str__(self):
-#         return self.user.username
 
 class UserAlbumRating(models.Model):
     userOwner = models.ForeignKey(Person, on_delete=models.CASCADE)

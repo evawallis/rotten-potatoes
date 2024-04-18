@@ -32,6 +32,7 @@
         
         {% else %}
         <p>To access this page, you should <a href="{% url 'users:login' %}">log in</a></p>
+        <p>Or, <a href="{% url 'users:register' %}">create an account</a>.</p>
         {% endif %}
 
     </body>

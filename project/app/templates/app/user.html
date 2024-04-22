@@ -12,14 +12,14 @@
         <h1>{{person.user.first_name}} {{person.user.last_name}}</h1>
 
      
-        <form method="post" action="{% url 'app:user' username=person.user.username %}">
+        <form method="post" action="{% url 'app:user' username=username %}">
             {% csrf_token %} 
             {% if person in user.person.follows.all %}
             <button name="unfollow">Following</button>
             {% else %}
             <button name="follow">Follow</button>
             {% endif %}
-            <input type="hidden" name="follows" value="{% url 'app:user' username=person.user.username %}" />
+            <input type="hidden" name="follows" value="{% url 'app:user' username=username %}" />
 
         <p>Followers:</p>
 

@@ -75,6 +75,7 @@ def user(request, username):
    if request.user.username == username:
       return redirect('app:profile')
    people = Person.objects.all()
+   savedPerson = None
    for person in people:
       if person.user.username == username:
          savedPerson = person
@@ -87,5 +88,11 @@ def user(request, username):
       me.save()
       return redirect('app:user', username=username)
    albums = UserAlbumRating.objects.filter(userOwner = savedPerson).all()
-   context = {'person': savedPerson, 'albums': albums}
+   context = {'username': username, 'person': savedPerson, 'albums': albums}
    return render(request, 'app/user.html', context)
+
+def album(request, albumid):
+   album = Album.objects.all().get(id=albumid)
+   reviews = UserAlbumRating.objects.all().filter(album = album)
+   context = {'album': album, 'reviews': reviews}
+   return render(request, 'app/album.html', context)

@@ -25,14 +25,14 @@
 
         <ul>
             {% for follower in person.follows.all %}
-            <li>{{follower}}</li>
+            <li><a href="{{follower}}">{{follower}}</a></li>
             {% endfor %}
         </ul>
 
         <p>Following:</p>
         <ul>
             {% for follower in person.follows_set.all %}
-            <li>{{follower}}</li>
+            <li><a href="{{follower}}">{{follower}}</a></li>
             {% endfor %}
         </ul>
 

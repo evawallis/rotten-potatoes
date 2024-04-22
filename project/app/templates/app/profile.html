@@ -33,14 +33,14 @@
 
         <ul>
             {% for follower in user.person.follows_set.all %}
-            <li>{{follower}}</li>
+            <li><a href="{{follower}}">{{follower}}</a></li>
             {% endfor %}
         </ul>
 
         <p>Following:</p>
         <ul>
             {% for follower in user.person.follows.all %}
-            <li>{{follower}}</li>
+            <li><a href="{{follower}}">{{follower}}</a></li>
             {% endfor %}
         </ul>
 

@@ -38,8 +38,11 @@
         </form>
 
         <ul>
-            {% for query in searchedItems %}
+            {% for query in queries %}
             <li>{{query}}</li>
+            {% endfor %}
+            {% for person in people %}
+            <li>{{person}}</li>
             {% endfor %}
         </ul>
 

@@ -41,28 +41,20 @@ def search(request):
          searchMethod = form.cleaned_data['searchMethod']
          queries = []
          people = []
-         filteredContent = []
 
          if searchMethod == 'Album':
-            queries = Album.objects.all()
+            queries = Album.objects.filter(name__icontains=searchContent)
          elif searchMethod == 'Song':
-            queries = Song.objects.all()
+            queries = Song.objects.filter(name__icontains=searchContent)
          elif searchMethod == 'Artist':
-            queries = Artist.objects.all()
+            queries = Artist.objects.filter(name__icontains=searchContent)
          else:
-            people = Person.objects.all()
+            for person in Person.objects.all():
+               personName = person.__str__()
+               if searchContent in personName:
+                  people.append(person)
 
-         for item in queries:
-            if item.name in searchContent:
-               filteredContent.append(item)
-
-         for person in people:
-            if person.user.first_name in searchContent:
-               filteredContent.append(person)
-            if person.user.username in searchContent:
-               filteredContent.append(person)
-         
-         context = {'searchedItems': filteredContent}
+         context = {'queries': queries, 'people': people}
          return render(request, 'app/search.html', context)   
 
    context = {'form': form}

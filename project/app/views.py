@@ -12,6 +12,9 @@ def home(request):
       except ObjectDoesNotExist:
          person = Person(user=user, favoriteColor="green")
          person.save()
+      for follower in user.person.follows.all():
+         if follower == user.person:
+            user.person.follows.remove(follower)
    return render(request, 'app/index.html')
 
 def profile(request):
@@ -69,6 +72,8 @@ def search(request):
    return render(request, 'app/search.html', context)
 
 def user(request, username):
+   if request.user.username == username:
+      return redirect('app:profile')
    people = Person.objects.all()
    for person in people:
       if person.user.username == username:

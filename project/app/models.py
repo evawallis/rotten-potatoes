@@ -25,5 +25,5 @@ class Song(models.Model):
 class UserAlbumRating(models.Model):
     userOwner = models.ForeignKey(Person, on_delete=models.CASCADE)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
-    rating = models.FloatField()
+    rating = models.DecimalField(decimal_places=1, max_digits=2)
     review = models.TextField()

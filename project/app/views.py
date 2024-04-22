@@ -18,10 +18,14 @@ def add(request):
    else:
       form = AddReviewForm(data=request.POST)
       if form.is_valid():
-         form.save()
-         # BUG HERE
-         # wont work because below line doesnt work, how to relate user id to form?
-         form.userOwner = request.user
+         message = ""
+         instance = form.save(commit=False)
+         instance.userOwner = request.user.person
+         if instance.rating >= 5.0:
+            message = "Rating must be between 0 and 5"
+            context = {'form': form, "message": message}
+            return render(request, 'app/add.html', context)
+         instance.save()
          return redirect('app:profile')
    context = {'form': form}
    return render(request, 'app/add.html', context)

@@ -29,3 +29,23 @@ def add(request):
          return redirect('app:profile')
    context = {'form': form}
    return render(request, 'app/add.html', context)
+
+def search(request):
+   if request.method != 'POST':
+      form = SearchForm()
+   else:
+      # TODO:
+      form = SearchForm(data=request.POST)
+      # if form.is_valid():
+      #    searchContent = form.cleaned_data['searchContent']
+      #    searchMethod = form.cleaned_data['searchMethod']
+      #    if searchMethod == 'Album':
+      #       queries = Album.objects.all()
+      #    elif searchMethod == 'Song':
+      #       queries = Song.objects.all()
+      #    elif searchMethod == 'Artist':
+      #       queries = Artist.objects.all()
+      #    else:
+      #       queries = Person.objects.all()
+   context = {'form': form}
+   return render(request, 'app/search.html', context)

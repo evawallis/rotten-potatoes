@@ -3,17 +3,17 @@
 <html lang="en">
 
     <head>
-        <title>Profile</title>
+        <title>Search</title>
     </head>
 
     <body>
-        <h1>Rotten Potatoes - Profile</h1>
+        <h1>Rotten Potatoes - Search</h1>
 
         <nav>
             <a href="..">Home</a>
             <a href="">Profile</a>
             <a href="add">Create a review</a>
-            <a href="search">Search</a>
+            <a href="">Search</a>
             <a href="{% url 'users:logout' %}">Log out</a>
         </nav>
 
@@ -29,22 +29,13 @@
 
         {% endif %}
 
-        <p>My albums:</p>
+        <form method="post" action="{% url 'app:search' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button name="submit">Search</button>
+            <input type="hidden" name="next" value="{% url 'app:search' %}" />
 
-        <ul>
-
-            {% for album in albums %} 
-
-            <li>{{album.album}} by {{album.album.artist}}</li>
-
-            <ul>
-                <li>{{album.rating}}/5.0</li>
-                <li>"{{album.review}}"</li>
-            </ul>
-
-            {% endfor %} 
-
-        </ul>
+        </form>
 
         {% else %}
 

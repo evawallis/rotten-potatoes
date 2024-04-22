@@ -13,6 +13,7 @@
             <a href="..">Home</a>
             <a href="profile">Profile</a>
             <a href="">Create a review</a>
+            <a href="search">Search</a>
             <a href="{% url 'users:logout' %}">Log out</a>
         </nav>
 
@@ -33,7 +34,7 @@
         <form method="post" action="{% url 'app:add' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <button name="submit">Register</button>
+            <button name="submit">Submit</button>
             <input type="hidden" name="next" value="{% url 'app:profile' %}" />
 
         </form>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
@@ -59,3 +60,12 @@ def search(request):
 
    context = {'form': form}
    return render(request, 'app/search.html', context)
+
+def user(request, username):
+   people = Person.objects.all()
+   for person in people:
+      if person.user.username == username:
+         savedPerson = person
+   albums = UserAlbumRating.objects.filter(userOwner = savedPerson).all()
+   context = {'person': savedPerson, 'albums': albums}
+   return render(request, 'app/user.html', context)

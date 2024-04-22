@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <title>User Profile</title>
+    </head>
+
+    <body>
+        {% if user.is_authenticated %}
+
+        <h1>{{person.user.first_name}} {{person.user.last_name}}</h1>
+
+        <p>{{person.user.first_name}}'s albums:</p>
+
+        <ul>
+
+            {% for album in albums %} 
+
+            <li>{{album.album}} by {{album.album.artist}}</li>
+
+            <ul>
+                <li>{{album.rating}}/5.0</li>
+                <li>"{{album.review}}"</li>
+            </ul>
+
+            {% endfor %} 
+
+        </ul>
+
+        <p>Go back to <a href="search">search</a></p>
+
+        {% else %}
+
+        <p>To access this page, you should <a href="{% url 'users:login' %}">log in</a></p>
+
+        {% endif %}
+
+    </body>
+
+</html>
+
+

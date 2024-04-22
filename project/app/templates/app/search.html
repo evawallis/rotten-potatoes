@@ -42,7 +42,11 @@
             <li>{{query}}</li>
             {% endfor %}
             {% for person in people %}
-            <li>{{person}}</li>
+            <li>
+                <a href="{{person}}">
+                {{person}}
+                </a>
+            </li>
             {% endfor %}
         </ul>
 

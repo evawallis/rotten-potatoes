@@ -74,9 +74,13 @@ def user(request, username):
       if person.user.username == username:
          savedPerson = person
    if request.method == 'POST':
-      person = request.user.person
-      person.follows.add(savedPerson)
-      person.save()
+      me = request.user.person
+      if 'unfollow' in request.POST:
+         me.follows.remove(savedPerson)
+      elif 'follow' in request.POST:
+         me.follows.add(savedPerson)
+      me.save()
+      return redirect('app:user', username=username)
    albums = UserAlbumRating.objects.filter(userOwner = savedPerson).all()
    context = {'person': savedPerson, 'albums': albums}
    return render(request, 'app/user.html', context)

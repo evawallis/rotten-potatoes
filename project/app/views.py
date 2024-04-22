@@ -73,6 +73,10 @@ def user(request, username):
    for person in people:
       if person.user.username == username:
          savedPerson = person
+   if request.method == 'POST':
+      person = request.user.person
+      person.follows.add(savedPerson)
+      person.save()
    albums = UserAlbumRating.objects.filter(userOwner = savedPerson).all()
    context = {'person': savedPerson, 'albums': albums}
    return render(request, 'app/user.html', context)

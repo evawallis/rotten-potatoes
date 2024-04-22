@@ -29,6 +29,21 @@
 
         {% endif %}
 
+        <p>Followers:</p>
+
+        <ul>
+            {% for follower in user.person.follows_set.all %}
+            <li>{{follower}}</li>
+            {% endfor %}
+        </ul>
+
+        <p>Following:</p>
+        <ul>
+            {% for follower in user.person.follows.all %}
+            <li>{{follower}}</li>
+            {% endfor %}
+        </ul>
+
         <p>My albums:</p>
 
         <ul>

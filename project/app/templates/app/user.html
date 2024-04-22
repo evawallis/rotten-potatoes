@@ -11,6 +11,33 @@
 
         <h1>{{person.user.first_name}} {{person.user.last_name}}</h1>
 
+        {% if person in user.person.follows.all %}
+        <p>Following</p>
+        {% else %}
+
+        <form method="post" action="{% url 'app:user' username=person.user.username %}">
+            {% csrf_token %}
+            <button name="submit">Follow</button>
+            <input type="hidden" name="follow" value="{% url 'app:user' username=person.user.username %}" />
+        </form>
+
+        {% endif %}
+
+        <p>Followers:</p>
+
+        <ul>
+            {% for follower in person.follows_set.all %}
+            <li>{{follower}}</li>
+            {% endfor %}
+        </ul>
+
+        <p>Following:</p>
+        <ul>
+            {% for follower in person.follows.all %}
+            <li>{{follower}}</li>
+            {% endfor %}
+        </ul>
+
         <p>{{person.user.first_name}}'s albums:</p>
 
         <ul>

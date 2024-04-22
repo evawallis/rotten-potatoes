@@ -34,18 +34,36 @@ def search(request):
    if request.method != 'POST':
       form = SearchForm()
    else:
-      # TODO:
       form = SearchForm(data=request.POST)
-      # if form.is_valid():
-      #    searchContent = form.cleaned_data['searchContent']
-      #    searchMethod = form.cleaned_data['searchMethod']
-      #    if searchMethod == 'Album':
-      #       queries = Album.objects.all()
-      #    elif searchMethod == 'Song':
-      #       queries = Song.objects.all()
-      #    elif searchMethod == 'Artist':
-      #       queries = Artist.objects.all()
-      #    else:
-      #       queries = Person.objects.all()
+      if form.is_valid():
+
+         searchContent = form.cleaned_data['searchContent']
+         searchMethod = form.cleaned_data['searchMethod']
+         queries = []
+         people = []
+         filteredContent = []
+
+         if searchMethod == 'Album':
+            queries = Album.objects.all()
+         elif searchMethod == 'Song':
+            queries = Song.objects.all()
+         elif searchMethod == 'Artist':
+            queries = Artist.objects.all()
+         else:
+            people = Person.objects.all()
+
+         for item in queries:
+            if item.name in searchContent:
+               filteredContent.append(item)
+
+         for person in people:
+            if person.user.first_name in searchContent:
+               filteredContent.append(person)
+            if person.user.username in searchContent:
+               filteredContent.append(person)
+         
+         context = {'searchedItems': filteredContent}
+         return render(request, 'app/search.html', context)   
+
    context = {'form': form}
    return render(request, 'app/search.html', context)

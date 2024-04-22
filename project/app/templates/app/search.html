@@ -11,7 +11,7 @@
 
         <nav>
             <a href="..">Home</a>
-            <a href="">Profile</a>
+            <a href="profile">Profile</a>
             <a href="add">Create a review</a>
             <a href="">Search</a>
             <a href="{% url 'users:logout' %}">Log out</a>
@@ -36,6 +36,12 @@
             <input type="hidden" name="next" value="{% url 'app:search' %}" />
 
         </form>
+
+        <ul>
+            {% for query in searchedItems %}
+            <li>{{query}}</li>
+            {% endfor %}
+        </ul>
 
         {% else %}
 

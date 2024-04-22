@@ -3,17 +3,17 @@
 <html lang="en">
 
     <head>
-        <title>Create a review</title>
+        <title>Search</title>
     </head>
 
     <body>
-        <h1>Rotten Potatoes - Create a Review</h1>
+        <h1>Rotten Potatoes - Search</h1>
 
         <nav>
             <a href="..">Home</a>
             <a href="profile">Profile</a>
-            <a href="">Create a review</a>
-            <a href="search">Search</a>
+            <a href="add">Create a review</a>
+            <a href="">Search</a>
             <a href="{% url 'users:logout' %}">Log out</a>
         </nav>
 
@@ -29,15 +29,26 @@
 
         {% endif %}
 
-        {{message}}
-
-        <form method="post" action="{% url 'app:add' %}">
+        <form method="post" action="{% url 'app:search' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <button name="submit">Submit</button>
-            <input type="hidden" name="next" value="{% url 'app:profile' %}" />
+            <button name="submit">Search</button>
+            <input type="hidden" name="next" value="{% url 'app:search' %}" />
 
         </form>
+
+        <ul>
+            {% for query in queries %}
+            <li>{{query}}</li>
+            {% endfor %}
+            {% for person in people %}
+            <li>
+                <a href="{{person}}">
+                {{person}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
 
         {% else %}
 

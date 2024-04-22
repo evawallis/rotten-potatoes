@@ -2,9 +2,16 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def home(request):
+   for user in User.objects.all():
+      try:
+         user.person
+      except ObjectDoesNotExist:
+         person = Person(user=user, favoriteColor="green")
+         person.save()
    return render(request, 'app/index.html')
 
 def profile(request):

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <title>Album Profile</title>
+    </head>
+
+    <body>
+
+        <h1>{{album.name}}</h1>
+
+        {% if user.is_authenticated %}
+
+        
+        <ul>
+            <p>Reviews:</p>
+            {% for review in reviews %}
+
+            <li>{{review.userOwner}}</li>
+
+            <ul>
+                <li>{{review.rating}}/5.0</li>
+                <li>"{{review.review}}"</li>
+            </ul>
+
+            {% endfor %} 
+        </ul>
+
+        {% else %}
+
+        <p>To access this page, you should <a href="{% url 'users:login' %}">log in</a></p>
+
+        {% endif %}
+
+    </body>
+
+</html>
+
+

@@ -33,14 +33,14 @@
 
         <ul>
             {% for follower in user.person.follows_set.all %}
-            <li>{{follower}}</li>
+            <li><a href="{{follower}}">{{follower}}</a></li>
             {% endfor %}
         </ul>
 
         <p>Following:</p>
         <ul>
             {% for follower in user.person.follows.all %}
-            <li>{{follower}}</li>
+            <li><a href="{{follower}}">{{follower}}</a></li>
             {% endfor %}
         </ul>
 
@@ -50,7 +50,7 @@
 
             {% for album in albums %} 
 
-            <li>{{album.album}} by {{album.album.artist}}</li>
+            <li><a href="/album/{{album.id}}">{{album.album}}</a> by {{album.album.artist}}</li>
 
             <ul>
                 <li>{{album.rating}}/5.0</li>

@@ -24,22 +24,53 @@ def profile(request):
    return render(request, 'app/profile.html', context)
 
 def add(request):
-   if request.method != 'POST':
-      form = AddReviewForm()
-   else:
-      form = AddReviewForm(data=request.POST)
-      if form.is_valid():
-         message = ""
-         instance = form.save(commit=False)
-         instance.userOwner = request.user.person
-         if instance.rating >= 5.0:
-            message = "Rating must be between 0 and 5"
-            context = {'form': form, "message": message}
-            return render(request, 'app/add.html', context)
-         instance.save()
-         return redirect('app:profile')
-   context = {'form': form}
-   return render(request, 'app/add.html', context)
+    user = request.user.person
+    
+    if request.method == 'POST':
+        form = AddReviewForm(request.POST)
+        if form.is_valid():
+            album = form.cleaned_data['album']
+            rating = form.cleaned_data['rating']
+            
+            # Check if the user has already rated the album
+            existing_rating = UserAlbumRating.objects.filter(album=album, userOwner=user).first()
+            if existing_rating:
+                # Update the existing rating with the new value
+                existing_rating.rating = rating
+                existing_rating.save()
+            else:
+                # Create a new rating
+                instance = form.save(commit=False)
+                instance.userOwner = user
+                instance.save()
+            
+            return redirect('app:profile')
+    else:
+        form = AddReviewForm()
+    
+    context = {'form': form}
+    return render(request, 'app/add.html', context)
+
+
+# This is the original but above is the code for being able to override a previous review
+
+# def add(request):
+#    if request.method != 'POST':
+#       form = AddReviewForm()
+#    else:
+#       form = AddReviewForm(data=request.POST)
+#       if form.is_valid():
+#          message = ""
+#          instance = form.save(commit=False)
+#          instance.userOwner = request.user.person
+#          if instance.rating >= 5.0:
+#             message = "Rating must be between 0 and 5"
+#             context = {'form': form, "message": message}
+#             return render(request, 'app/add.html', context)
+#          instance.save()
+#          return redirect('app:profile')
+#    context = {'form': form}
+#    return render(request, 'app/add.html', context)
 
 def search(request):
    if request.method != 'POST':

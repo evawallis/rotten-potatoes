@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import Person
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Artist(models.Model):
@@ -25,5 +26,5 @@ class Song(models.Model):
 class UserAlbumRating(models.Model):
     userOwner = models.ForeignKey(Person, on_delete=models.CASCADE)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
-    rating = models.DecimalField(decimal_places=1, max_digits=2)
+    rating = models.DecimalField(decimal_places=1, max_digits=2, validators=[MinValueValidator(0), MaxValueValidator(5)])
     review = models.TextField()

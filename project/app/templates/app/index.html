@@ -29,7 +29,24 @@
 
         {% endif %}
 
-        <p>Homepage</p>
+        <p>Feed</p>
+
+
+        <ul>
+
+            {% for album in albums %} 
+
+            <li>{{album.album}} by {{album.album.artist}}</li>
+
+            <ul>
+                <li>{{album.rating}}/5.0</li>
+                <li>"{{album.review}}" - {{album.userOwner}}</li>
+            </ul>
+            <br>
+
+            {% endfor %} 
+
+        </ul>
         
         {% else %}
         <p>To access this page, you should <a href="{% url 'users:login' %}">log in</a></p>

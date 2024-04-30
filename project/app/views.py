@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def home(request):
+
    for user in User.objects.all():
       try:
          user.person
@@ -15,7 +16,20 @@ def home(request):
       for follower in user.person.follows.all():
          if follower == user.person:
             user.person.follows.remove(follower)
-   return render(request, 'app/index.html')
+
+   albumFeed = []
+   feed = []
+   me = request.user.person
+   myAlbums = UserAlbumRating.objects.filter(userOwner = me).all()
+   albumFeed.append(myAlbums)
+   for friend in me.follows.all():
+      friendAlbums = UserAlbumRating.objects.filter(userOwner = friend).all()
+      albumFeed.append(friendAlbums)
+   for set in albumFeed:
+      for item in set:
+         feed.append(item)
+   context = {'albums': feed}
+   return render(request, 'app/index.html', context)
 
 def profile(request):
    person = request.user.person
@@ -51,26 +65,6 @@ def add(request):
     context = {'form': form}
     return render(request, 'app/add.html', context)
 
-
-# This is the original but above is the code for being able to override a previous review
-
-# def add(request):
-#    if request.method != 'POST':
-#       form = AddReviewForm()
-#    else:
-#       form = AddReviewForm(data=request.POST)
-#       if form.is_valid():
-#          message = ""
-#          instance = form.save(commit=False)
-#          instance.userOwner = request.user.person
-#          if instance.rating >= 5.0:
-#             message = "Rating must be between 0 and 5"
-#             context = {'form': form, "message": message}
-#             return render(request, 'app/add.html', context)
-#          instance.save()
-#          return redirect('app:profile')
-#    context = {'form': form}
-#    return render(request, 'app/add.html', context)
 
 def search(request):
    if request.method != 'POST':
